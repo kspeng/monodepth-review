@@ -49,6 +49,10 @@ Using cityspaces dataset and model as example.
   python utils/evaluate_kitti.py --split kitti --predicted_disp_path \
   models/kitti/disparities.npy --gt_path data/kitti/
   ```
+  Supposedly, the evaluation result should look like following:
+  
+    abs_rel,     sq_rel,        rms,    log_rms,     d1_all,         a1,         a2,         a3
+    0.1237,     1.3907,      6.135,      0.218,     30.423,      0.840,      0.936,      0.975 
   
 ## UA hpc server
 
