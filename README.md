@@ -10,7 +10,7 @@ Before the main four processes, the pretrained models and the dataset, including
 ### [KITTI](http://www.cvlibs.net/datasets/kitti/raw_data.php)
 Author used two different split of the data, **kitti** and **eigen**, amounting for respectively 29000 and 22600 training samples, we can find them in the source code - [filenames](utils/filenames) folder. These are for training purpose. For evaluation, we need [KITTI stereo 2015](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo), providing 200 official training set pairs, and [Eigen NIPS14](http://www.cs.nyu.edu/~deigen/depth/), corresponding to the 697 test images.
 
-KITTI dataset has all PNG format images (In total acorund 200Gb), which are all converted into JPG format in author's configuration. However, the depth images must be kept in PNG format. Otherwise, the evaluation process won't work. Simply say, only raw images are converted to JPG format.  
+KITTI dataset has all PNG format images (In total weight acorund **200GB**), which are all converted into JPG format in author's configuration. However, the depth images must be kept in PNG format. Otherwise, the evaluation process won't work. Simply say, only raw images are converted to JPG format.  
 
 Next, in author's sample command, it implies that the training and testing folders of KITTI_stereo_2015 need to be allocated in data/kitti/ folder. 
 
@@ -22,4 +22,24 @@ Same as KITTI, author converted all raw images to JPG file. Author also put trai
 Then, we are ready to go for these fun processes.
 
 ## Local Host
+
+Using cityspaces dataset and model as example.
+
+1. Just want to try a single image
+  ```shell
+  python monodepth_simple.py --image_path data/test/test_img.jpg --checkpoint_path models/cityspaces/model_cityscapes
+  ```
+2. Train our own model
+  ```shell
+  python monodepth_main.py --mode train --model_name my_model --data_path data/citispaces/test/ --filenames_file utils/filenames/cityscapes_test_files.txt --log_directory ./log/ --batch_size 2 --num_epochs 1
+  ```
+3. Test pretrained model then evaluate the results
+  1.) Test KITTI Stereo 2015
+  ```shell
+  python monodepth_main.py --mode test --data_path data/kitti/ --filenames_file utils/filenames/kitti_stereo_2015_test_files.txt --log_directory log/ --checkpoint_path models/kitti/model_kitti
+  ```
+  2.) Evaluate the results
+  ```shell
+  python utils/evaluate_kitti.py --split kitti --predicted_disp_path ~/tmp/my_model/disparities.npy --gt_path ~/data/KITTI/
+  ```
 
