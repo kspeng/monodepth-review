@@ -40,6 +40,30 @@ Using cityspaces dataset and model as example.
   ```
   2.) Evaluate the results
   ```shell
-  python utils/evaluate_kitti.py --split kitti --predicted_disp_path ~/tmp/my_model/disparities.npy --gt_path ~/data/KITTI/
+  python utils/evaluate_kitti.py --split kitti --predicted_disp_path models/kitti/disparities.npy --gt_path data/kitti/
+  ```
+  
+## UA hpc server
+
+Using cityspaces dataset and model as example. 
+- The dataset are placed in \xdisk\data\.
+- Assume we have the singularity container ready, refering to Singularity Container for Computer Vision Python Tensorflow-GPU (https://github.com/kspeng/UA_HPC_Configuration/blob/master/Singularity%20Container%20for%20Computer%20Vision%20Python%20Tensorflow-GPU.md). The container .img file is in the path **~/workspace/envImg/**
+
+1. Just want to try a single image
+  ```shell
+  singularity run --nv ~/workspace/envImg/keras+tensorflow_gpu-1.4.1-cp35-cuda8-cudnn6.img monodepth_simple.py --image_path data/test/roadImage00.jpg --checkpoint_path models/cityspaces/model_cityscapes.data-00000-of-00001
+  ```
+2. Train our own model
+  ```shell
+  singularity run --nv ~/workspace/envImg/keras+tensorflow_gpu-1.4.1-cp35-cuda8-cudnn6.img monodepth_main.py --mode train --model_name my_model_kitti --data_path ~/../../../xdisk/kspeng/data/kitti/ --filenames_file utils/filenames/kitti_train_files.txt --log_directory ./log/ --batch_size 8 --num_epochs 50
+  ```
+3. Test pretrained model then evaluate the results
+  1.) Test KITTI Stereo 2015
+  ```shell
+  singularity run --nv ~/workspace/envImg/keras+tensorflow_gpu-1.4.1-cp35-cuda8-cudnn6.img monodepth_main.py --mode test --data_path ~/../../../xdisk/kspeng/data/kitti/ --filenames_file utils/filenames/kitti_stereo_2015_test_files.txt --log_directory ~/tmp/ --checkpoint_path models/kitti/model_kitti
+  ```
+  2.) Evaluate the results
+  ```shell
+  singularity run --nv ~/workspace/envImg/keras+tensorflow_gpu-1.4.1-cp35-cuda8-cudnn6.img utils/evaluate_kitti.py --split kitti --predicted_disp_path models/kitti/disparities.npy --gt_path ~/../../../xdisk/kspeng/data/kitti/
   ```
 
