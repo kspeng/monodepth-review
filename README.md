@@ -33,7 +33,9 @@ Using cityspaces dataset and model as example.
 2. Train our own model
   ```shell
   python monodepth_main.py --mode train --model_name my_model \
-  --data_path data/citispaces/test/ --filenames_file utils/filenames/cityscapes_test_files.txt --log_directory ./log/ --batch_size 2 --num_epochs 1
+  --data_path data/citispaces/test/ --filenames_file \
+  utils/filenames/cityscapes_test_files.txt --log_directory \
+  log/ --batch_size 2 --num_epochs 1
   ```
 3. Test pretrained model then evaluate the results
   - Test KITTI Stereo 2015
@@ -52,7 +54,7 @@ Using cityspaces dataset and model as example.
 
 Using cityspaces dataset and model as example. 
 - The dataset are placed in \xdisk\data\.
-- Assume we have the singularity container ready, refering to Singularity Container for Computer Vision Python Tensorflow-GPU (https://github.com/kspeng/UA_HPC_Configuration/blob/master/Singularity%20Container%20for%20Computer%20Vision%20Python%20Tensorflow-GPU.md). The container .img file is in the path **~/workspace/envImg/**
+- Assume we have the singularity container ready, refering to Singularity [Container for Computer Vision Python Tensorflow-GPU](https://github.com/kspeng/UA_HPC_Configuration/blob/master/Singularity%20Container%20for%20Computer%20Vision%20Python%20Tensorflow-GPU.md). The container .img file is in the path **~/workspace/envImg/**
 
 1. Just want to try a single image
   ```shell
