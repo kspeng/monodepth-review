@@ -27,20 +27,25 @@ Using cityspaces dataset and model as example.
 
 1. Just want to try a single image
   ```shell
-  python monodepth_simple.py --image_path data/test/test_img.jpg --checkpoint_path models/cityspaces/model_cityscapes
+  python monodepth_simple.py --image_path data/test/test_img.jpg \
+  --checkpoint_path models/cityspaces/model_cityscapes
   ```
 2. Train our own model
   ```shell
-  python monodepth_main.py --mode train --model_name my_model --data_path data/citispaces/test/ --filenames_file utils/filenames/cityscapes_test_files.txt --log_directory ./log/ --batch_size 2 --num_epochs 1
+  python monodepth_main.py --mode train --model_name my_model \
+  --data_path data/citispaces/test/ --filenames_file utils/filenames/cityscapes_test_files.txt --log_directory ./log/ --batch_size 2 --num_epochs 1
   ```
 3. Test pretrained model then evaluate the results
   - Test KITTI Stereo 2015
   ```shell
-  python monodepth_main.py --mode test --data_path data/kitti/ --filenames_file utils/filenames/kitti_stereo_2015_test_files.txt --log_directory log/ --checkpoint_path models/kitti/model_kitti
+  python monodepth_main.py --mode test --data_path data/kitti/ \
+  --filenames_file utils/filenames/kitti_stereo_2015_test_files.txt \
+  --log_directory log/ --checkpoint_path models/kitti/model_kitti
   ```
   - Evaluate the results
   ```shell
-  python utils/evaluate_kitti.py --split kitti --predicted_disp_path models/kitti/disparities.npy --gt_path data/kitti/
+  python utils/evaluate_kitti.py --split kitti --predicted_disp_path \
+  models/kitti/disparities.npy --gt_path data/kitti/
   ```
   
 ## UA hpc server
