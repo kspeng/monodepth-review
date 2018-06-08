@@ -8,11 +8,18 @@ Before the main four processes, the pretrained models and the dataset, including
 
 ## Dataset Preprocessing
 ### [KITTI](http://www.cvlibs.net/datasets/kitti/raw_data.php)
-Author used two different split of the data, **kitti** and **eigen**, amounting for respectively 29000 and 22600 training samples, we can find them in the source code - [filenames](utils/filenames) folder. These are for training purpose. For evaluation, we need [KITTI stereo 2015](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo, providing 200 official training set pairs, and [Eigen NIPS14](http://www.cs.nyu.edu/~deigen/depth/), corresponding to the 697 test images.
+Author used two different split of the data, **kitti** and **eigen**, amounting for respectively 29000 and 22600 training samples, we can find them in the source code - [filenames](utils/filenames) folder. These are for training purpose. For evaluation, we need [KITTI stereo 2015](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php?benchmark=stereo), providing 200 official training set pairs, and [Eigen NIPS14](http://www.cs.nyu.edu/~deigen/depth/), corresponding to the 697 test images.
 
 KITTI dataset has all PNG format images (In total acorund 200Gb), which are all converted into JPG format in author's configuration. However, the depth images must be kept in PNG format. Otherwise, the evaluation process won't work. Simply say, only raw images are converted to JPG format.  
 
-Next, in author's sample command, it implies that the training and testing folders of KITTI_stereo_2015 need to be allocated in data/kitti/ folder. Then, we are ready to go for these fun processes.
+Next, in author's sample command, it implies that the training and testing folders of KITTI_stereo_2015 need to be allocated in data/kitti/ folder. 
+
+### [Cityscapes](https://www.cityscapes-dataset.com)
+We need to register in order to download the data, which already has a train/val/test/trainextra set with over 23000 training images.  Author used `leftImg8bit_trainvaltest.zip`, `rightImg8bit_trainvaltest.zip`, `leftImg8bit_trainextra.zip` and `rightImg8bit_trainextra.zip` which weights **110GB**.
+
+Same as KITTI, author converted all raw images to JPG file. Author also put trainextra dataset into train dataset folder (data/citispaces/train). We have to do the same thing to ensure all raw images to be in the right pace. 
+
+Then, we are ready to go for these fun processes.
 
 ## Local Host
 
